@@ -95,7 +95,7 @@ window.onload = function(){
     //whenLost
     function whenLost(){
         var btn = document.createElement('a')
-        btn.setAttribute('href', "MainGame.html")
+        btn.setAttribute('href', "./")
         btn.innerHTML = "Play Again"
         btn.style.color = "white"
         btn.style.fontSize = "40px"

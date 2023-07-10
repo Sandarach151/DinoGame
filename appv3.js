@@ -70,27 +70,29 @@ window.onload = function(){
     cv.clearRect(150, 0, userSize, lineHeight)
     cv.fillStyle = 'red'
     cv.fillRect(150, lineHeight-userHeight-userSize, userSize, userSize)
-    document.addEventListener('keydown', event => {
-        if(event.code === 'Space' && userHeight==0 && isLost===false){
-            cv.clearRect(150, lineHeight-userSize, userSize, userSize)
-            userHeight += 200
-            var timeUser = Date.now()
-            function DrawUser(){
-                var timePassedUser = Date.now() - timeUser
-                timeUser = Date.now()
-                userHeight -= timePassedUser*userGrav
-                userHeight = Math.max(userHeight, 0)
-                cv.beginPath()
-                cv.clearRect(150, 0, userSize, lineHeight-size_of_square)
-                cv.fillStyle = 'red'
-                cv.fillRect(150, lineHeight-userHeight-userSize, userSize, userSize)
-                if(userHeight!=0 && isLost===false){
-                    window.requestAnimationFrame(DrawUser)
+    function handleKeyPress(event) {
+        if (event.code === 'Space' && userHeight === 0 && isLost === false) {
+            cv.clearRect(150, lineHeight - userSize, userSize, userSize);
+            userHeight += 200;
+            var timeUser = Date.now();
+            function DrawUser() {
+                var timePassedUser = Date.now() - timeUser;
+                timeUser = Date.now();
+                userHeight -= timePassedUser * userGrav;
+                userHeight = Math.max(userHeight, 0);
+                cv.beginPath();
+                cv.clearRect(150, 0, userSize, lineHeight - size_of_square);
+                cv.fillStyle = 'red';
+                cv.fillRect(150, lineHeight - userHeight - userSize, userSize, userSize);
+                if (userHeight != 0 && isLost === false) {
+                    window.requestAnimationFrame(DrawUser);
                 }
-            }
-            DrawUser()
+            }    
+            DrawUser();
         }
-    })
+    }
+    document.addEventListener('keydown', handleKeyPress);
+    document.addEventListener('click', handleKeyPress);
     
     //whenLost
     function whenLost(){
